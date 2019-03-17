@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "870510493023",
+    "firebase_url": "https://overchat-b2b04.firebaseio.com",
+    "project_id": "overchat-b2b04",
+    "storage_bucket": "overchat-b2b04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870510493023:android:19c4804aa4771e1b",
+        "android_client_info": {
+          "package_name": "com.nervelap.overchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870510493023-deufbsb47iul5ml1m2v66707qh78cr3a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nervelap.overchat",
+            "certificate_hash": "9c06d9091a4f5309b39ccd232fe39b40390a2245"
+          }
+        },
+        {
+          "client_id": "870510493023-2p600gdshuii1qlql4eelfooa3bj9eba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAelbX6Y4jHhj0cGLw5w5AyEb19NN3t_1I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870510493023-2p600gdshuii1qlql4eelfooa3bj9eba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
