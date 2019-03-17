@@ -32,18 +32,15 @@ public class MainActivity extends AppCompatActivity {
         mTapsAdapter = new TapsAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mTapsAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-        //  FirebaseApp.initializeApp(this);
-        //    mFirebaseAuth = FirebaseAuth.getInstance();
-        //mCurrentUser = mFirebaseAuth.getCurrentUser();
+        FirebaseApp.initializeApp(this);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mCurrentUser = mFirebaseAuth.getCurrentUser();
     }
-
     @Override
     protected void onStart() {
         super.onStart();
         if (mCurrentUser == null) {
-
             sendUserToLoginActivity();
-
         }
     }
 

@@ -79,7 +79,6 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="17sp"
                 android:textStyle="bold" />
-
         </RelativeLayout>
     </ScrollView>
 
