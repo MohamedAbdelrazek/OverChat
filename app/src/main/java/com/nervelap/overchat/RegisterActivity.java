@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -18,12 +17,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText mEmailAddress, mPassword;
     private Button mRegister;
     private TextView mAlreadyHaveAccount;
     private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDataBaseRef;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -31,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         FirebaseApp.initializeApp(this);
+        mDataBaseRef = FirebaseDatabase.getInstance().getReference();
         mFirebaseAuth = FirebaseAuth.getInstance();
         mEmailAddress = findViewById(R.id.registe_email_id);
         mPassword = findViewById(R.id.register_password_id);
@@ -71,9 +74,11 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        mProgressDialog.dismiss();
+                        String currentUser = mFirebaseAuth.getCurrentUser().getUid();
+                        mDataBaseRef.child("Users").child(currentUser).setValue("");
                         Toast.makeText(RegisterActivity.this, "Account Created successfully ! ", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        sendUserToMainActivity();
+                        mProgressDialog.dismiss();
                     } else {
                         Toast.makeText(RegisterActivity.this, task.getException().getMessage().toString(), Toast.LENGTH_SHORT).show();
                         mProgressDialog.dismiss();
@@ -81,5 +86,13 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+
+    private void sendUserToMainActivity() {
+        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
     }
 }

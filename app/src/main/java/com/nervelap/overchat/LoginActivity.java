@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         mProgressDialog.dismiss();
                         Toast.makeText(LoginActivity.this, "Successfully logged in !", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        sendUserToMainActivity();
                     } else {
                         Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         mProgressDialog.dismiss();
@@ -77,6 +77,13 @@ public class LoginActivity extends AppCompatActivity {
             });
 
         }
+    }
+
+    private void sendUserToMainActivity() {
+        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
     }
 
 }
