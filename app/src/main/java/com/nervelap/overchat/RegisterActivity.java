@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         String currentUser = mFirebaseAuth.getCurrentUser().getUid();
-                        mDataBaseRef.child("Users").child(currentUser).setValue("");
+                        mDataBaseRef.child("Users").child(currentUser).setValue("registered");
                         Toast.makeText(RegisterActivity.this, "Account Created successfully ! ", Toast.LENGTH_SHORT).show();
                         sendUserToMainActivity();
                         mProgressDialog.dismiss();
