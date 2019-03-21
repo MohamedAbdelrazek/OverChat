@@ -3,6 +3,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="contacts_fragment">Contacts Fragment</string>
-    <string name="chat_fragment">chat Fragment</string>
-    <string name="group_fragment">group Fragment</string>
+    <string name="chat_fragment">Chat Fragment</string>
+    <string name="group_fragment">Group Fragment</string>
 </resources>

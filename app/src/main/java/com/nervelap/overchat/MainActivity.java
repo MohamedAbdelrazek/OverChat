@@ -89,12 +89,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(loginIntent);
         finish();
     }
+
     private void sendUserToSettingActivity() {
         Intent settingIntent = new Intent(getApplicationContext(), SettingActivity.class);
         settingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(settingIntent);
         finish();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -112,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
             sendUserToLoginActivity();
 
         } else if (item.getItemId() == R.id.menu_settings_id) {
-            sendUserToSettingActivity();
+
+            startActivity(new Intent(getApplicationContext(), SettingActivity.class));
 
         }
         return true;

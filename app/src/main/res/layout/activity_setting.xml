@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image_id"
             android:layout_width="250dp"
@@ -32,6 +34,7 @@
             android:background="@drawable/inputs"
             android:drawableStart="@drawable/edit_profile"
             android:hint="username"
+            android:inputType="textCapWords"
             android:padding="6dp"
             android:textAlignment="center"
             android:textStyle="bold" />
@@ -49,7 +52,7 @@
             android:background="@drawable/inputs"
             android:drawableStart="@drawable/edit_status"
             android:hint="hey, I am available now!"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|textCapSentences"
             android:padding="6dp"
             android:textAlignment="center"
             android:textStyle="bold" />
@@ -70,5 +73,5 @@
             android:textColor="@android:color/background_light"
             android:textSize="20sp" />
 
-</RelativeLayout>
-    </ScrollView>
+    </RelativeLayout>
+</ScrollView>
