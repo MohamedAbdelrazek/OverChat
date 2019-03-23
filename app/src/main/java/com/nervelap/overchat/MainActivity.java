@@ -1,17 +1,23 @@
 package com.nervelap.overchat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -117,8 +123,56 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(new Intent(getApplicationContext(), SettingActivity.class));
 
+        } else if (item.getItemId() == R.id.menu_create_group_id) {
+
+            requstNewGroup();
+
         }
         return true;
+    }
+
+    private void requstNewGroup() {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.AlertDialog);
+        alertDialog.setTitle("Enter Group Name :");
+        final EditText groupName = new EditText(this);
+        groupName.setHint("e.g IT Jobs");
+        alertDialog.setView(groupName);
+        alertDialog.setPositiveButton("Create", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String gName = groupName.getText().toString();
+                if (TextUtils.isEmpty(gName)) {
+                    Toast.makeText(MainActivity.this, "Please Enter the Group Name !", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    createNewGroup(gName);
+                }
+            }
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.cancel();
+            }
+        });
+
+
+        alertDialog.show();
+    }
+
+    private void createNewGroup(String gName) {
+
+        mDataBaseRef.child("Groups").child(gName).setValue("").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Group Created successfully !", Toast.LENGTH_SHORT).show();
+                } else {
+                }
+
+            }
+        });
     }
 
 
